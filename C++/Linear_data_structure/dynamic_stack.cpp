@@ -61,7 +61,7 @@ public:
     {
         if (length == 0)
             initArray();
-        if (top == length - 1)
+        else if (top == length - 1)
             doubleArray();
         top = top + 1;
         stack_array[top] = data;

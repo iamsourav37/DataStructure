@@ -23,7 +23,7 @@ class Stack {
       print("Stack underflow");
       return -1;
     }
-    return this._top--;
+    return this._data[this._top--];
   }
 
   dynamic peek() {

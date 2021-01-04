@@ -14,7 +14,7 @@ void main() {
         stack.push(data);
         break;
       case 2:
-        stack.pop();
+        print("Poped element : ${stack.pop()}");
         break;
       case 3:
         print("Peek : ${stack.peek()}");

@@ -5,7 +5,7 @@ def selection_sort(elements):
     for i in range(len(elements)):
         index_of_min = i
 
-        for j in range(i+1, len(elements)):
+        for j in range(i+1,  len(elements)):
             if elements[index_of_min] > elements[j]:
                 index_of_min = j
         # swap

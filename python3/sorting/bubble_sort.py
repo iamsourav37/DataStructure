@@ -3,10 +3,11 @@ def bubble_sort(elements):
     for i in range(len(elements)):
         for j in range(len(elements)-1-i):
             if elements[j] > elements[j+1]:
-                # swap
-                temp = elements[j]
-                elements[j] = elements[j+1]
-                elements[j+1] = temp
+                # swap in better way
+                elements[j] , elements[j+1] = elements[j+1], elements[j]
+                # temp = elements[j]
+                # elements[j] = elements[j+1]
+                # elements[j+1] = temp
 
 
 def bubble_sort_improved_version(elements):
@@ -26,7 +27,7 @@ def bubble_sort_improved_version(elements):
 
 def display_elements(elements):
     for i in elements:
-        print(i, end=",")
+        print(i, end=" ")
     print("")
 
 

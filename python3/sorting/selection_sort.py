@@ -9,9 +9,9 @@ def selection_sort(elements):
             if elements[index_of_min] > elements[j]:
                 index_of_min = j
         # swap
-        temp = elements[i]
-        elements[i] = elements[index_of_min]
-        elements[index_of_min] = temp
+        elements[i], elements[index_of_min] = elements[index_of_min], elements[i]
+
+
 
 
 def display_elements(elements):

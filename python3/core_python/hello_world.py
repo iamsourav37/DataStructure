@@ -1,5 +1,6 @@
 
+count = int(input("How many times I tell you ? "))
 
-a = [12,23,34]
-b = [12,23,34]
 
+for i in range(count):
+    print("Chant Hare Krishna \U0001f600")

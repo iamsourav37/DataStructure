@@ -12,7 +12,7 @@ def guessing_game():
         print("Choose between {} to {} : ".format(start, end))
         user_choose = int(input())
 
-        if user_choose > end:
+        if user_choose > end or user_choose < start:
             print("Please choose between {} to {}".format(start, end))
             continue
         elif user_choose == computer_choose:

@@ -52,6 +52,16 @@ class LinkedList:
                 itr = itr.next
                 count += 1
 
+    def insert_after_value(self, data_after, data_to_insert):
+        itr = self.head
+        while itr:
+            if itr.data == data_after:
+                node = Node(data_to_insert, itr.next)
+                itr.next = node
+                break
+            itr = itr.next
+        else:
+            print(f"{data_after} is not present in the list")
 
     def remove_first(self):
         if self.head is None:
@@ -97,7 +107,7 @@ class LinkedList:
             while itr:
                 data_list += str(itr.data) + '-->'
                 itr = itr.next
-            data_list += 'XX'
+            data_list += 'XXX'
             print(data_list)
 
     def get_length(self):
@@ -114,15 +124,12 @@ def main():
     list.insert_at('Pritam', 4)
     list.insert_at('Bapi', 3)
 
-    list.display_list()
-    print("Length : ", list.get_length())
-
-    list.remove_first()
-    list.remove_last()
-    list.remove_at(index=2)
+    list.insert_after_value('Anish', 'Amartya')
+    list.insert_after_value('Sourav', 'Gourab')
 
     list.display_list()
     print("Length : ", list.get_length())
+
 
 
 

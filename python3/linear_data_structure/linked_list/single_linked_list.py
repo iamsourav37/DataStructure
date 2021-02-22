@@ -58,10 +58,11 @@ class LinkedList:
             if itr.data == data_after:
                 node = Node(data_to_insert, itr.next)
                 itr.next = node
+                self.length += 1
                 break
             itr = itr.next
         else:
-            print(f"{data_after} is not present in the list")
+            print(f"\'{data_after}\' is not present in the list")
 
     def remove_first(self):
         if self.head is None:
@@ -97,6 +98,19 @@ class LinkedList:
                 itr = itr.next
                 count += 1
 
+    def remove_by_value(self, data):
+        itr = self.head
+        tmp = self.head
+        while itr:
+            if itr.data == data:
+                tmp.next = itr.next
+                self.length -= 1
+                break
+            tmp = itr
+            itr = itr.next
+        else:
+            print(f"\'{data}\' is not present in the list")
+
     def display_list(self):
         if self.head is None:
             print("List is empty")
@@ -114,8 +128,6 @@ class LinkedList:
         return self.length
 
 
-
-
 def main():
     list = LinkedList()
     list.insert_values(('Sourav', 'Ratul', 'Ashim'))
@@ -126,12 +138,14 @@ def main():
 
     list.insert_after_value('Anish', 'Amartya')
     list.insert_after_value('Sourav', 'Gourab')
+    list.insert_after_value('Amartya', 'Swastya')
+
+    list.remove_by_value('Gourab')
+    list.remove_by_value('Bapi')
+    list.remove_by_value('Raja')
 
     list.display_list()
     print("Length : ", list.get_length())
-
-
-
 
 
 if __name__ == '__main__':

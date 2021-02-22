@@ -7,11 +7,85 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.length = 0
 
     def insert_at_beginning(self, data):
         # self.head = Node(data, self.head)
         node = Node(data, self.head)
         self.head = node
+        self.length += 1
+
+    def insert_at_end(self, data):
+        if self.head is None:
+            node = Node(data, self.head)
+            self.head = node
+        else:
+            tmp = self.head
+
+            while tmp.next is not None:
+                tmp = tmp.next
+            tmp.next = Node(data, None)
+        self.length += 1
+
+    def insert_values(self, data_list):
+        for data in data_list:
+            self.insert_at_end(data)
+
+    def insert_at(self, data, index):
+        if index < 0 or index > self.length:
+            raise Exception("Invalid index")
+        elif index == 0:
+            self.insert_at_beginning(data)
+            return
+        elif index == self.length:
+            self.insert_at_end(data)
+        else:
+            self.length += 1
+            count = 0
+            itr = self.head
+            while itr:
+                if count == index - 1:
+                    node = Node(data, itr.next)
+                    itr.next = node
+                    return
+
+                itr = itr.next
+                count += 1
+
+
+    def remove_first(self):
+        if self.head is None:
+            return
+        else:
+            self.length -= 1
+            self.head = self.head.next
+
+    def remove_last(self):
+        if self.head is None:
+            return
+        else:
+            self.length -= 1
+            itr = self.head
+            while itr.next.next:
+                itr = itr.next
+            itr.next = None
+
+    def remove_at(self, index):
+        if index < 0 or index > self.length:
+            raise Exception("Invalid index")
+        elif index == 0:
+            self.remove_first()
+            return
+        else:
+            self.length -= 1
+            count = 0
+            itr = self.head
+            while itr:
+                if count == index - 1:
+                    itr.next = itr.next.next
+                    return
+                itr = itr.next
+                count += 1
 
     def display_list(self):
         if self.head is None:
@@ -23,19 +97,34 @@ class LinkedList:
             while itr:
                 data_list += str(itr.data) + '-->'
                 itr = itr.next
-            data_list += 'None'
+            data_list += 'XX'
             print(data_list)
+
+    def get_length(self):
+        return self.length
+
+
 
 
 def main():
     list = LinkedList()
-    list.insert_at_beginning(12)
-    list.insert_at_beginning(72)
-    list.insert_at_beginning(34)
-    list.insert_at_beginning(10)
-    list.insert_at_beginning(8)
+    list.insert_values(('Sourav', 'Ratul', 'Ashim'))
+    list.insert_at('Anish', 3)
+    list.insert_at('Nayan', 4)
+    list.insert_at('Pritam', 4)
+    list.insert_at('Bapi', 3)
 
     list.display_list()
+    print("Length : ", list.get_length())
+
+    list.remove_first()
+    list.remove_last()
+    list.remove_at(index=2)
+
+    list.display_list()
+    print("Length : ", list.get_length())
+
+
 
 
 if __name__ == '__main__':

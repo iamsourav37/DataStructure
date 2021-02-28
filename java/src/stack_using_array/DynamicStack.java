@@ -19,9 +19,24 @@ public class DynamicStack {
     }
     private void doubleArray(){
         // double the array
+        this.capacity *= 2;
+        int[] newArray = new int[this.capacity];
+
+        // now copy the elements
+        for(int i=0; i<this.capacity /2; i++)
+            newArray[i] = this.stack_array[i];
+
+        this.stack_array = newArray;
     }
     private void shrinkArray(){
         // half the array
+        this.capacity /= 2;
+        int[] newArray = new int[this.capacity];
+
+        // now copy the elements
+        for(int i=0; i<this.capacity; i++)
+            newArray[i] = this.stack_array[i];
+        this.stack_array = newArray;
     }
     public void push(int data){
         if(this.capacity == 0)
@@ -62,5 +77,8 @@ public class DynamicStack {
     }
     public int getSize(){
         return this.top+1;
+    }
+    public int getCapacity(){
+        return this.capacity;
     }
 }

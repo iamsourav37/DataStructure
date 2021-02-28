@@ -14,7 +14,7 @@ interface DeleteMethods{
     void remove(int data);
 }
 
-abstract public class SingleLinkedList implements InsertMethods,DeleteMethods {
+public class SingleLinkedList implements InsertMethods {
     private Node head;
 
     SingleLinkedList(){ // default constructor
@@ -67,13 +67,13 @@ abstract public class SingleLinkedList implements InsertMethods,DeleteMethods {
     public void insertAfter(int key, int data){
 
         // first find out the index of the key
-        // if found then call insertAt method with index
+        // if found then call insertAt method with index+1
         // if not found then show key not found message
         int index = 0;
         Node tmp = this.head;
         while(tmp != null){
             if(tmp.getData() == key){
-                this.insertAt(index, data);
+                this.insertAt(index+1, data);
                 return;
             }
             index++;
@@ -85,13 +85,13 @@ abstract public class SingleLinkedList implements InsertMethods,DeleteMethods {
     public void insertBefore(int key, int data){
 
         // first find out the index of the key
-        // if found then call insertAt method with index-1
+        // if found then call insertAt method with index
         // if not found then show key not found message
         int index = 0;
         Node tmp = this.head;
         while(tmp != null){
             if(tmp.getData() == key){
-                this.insertAt(index-1, data);
+                this.insertAt(index, data);
                 return;
             }
             index++;

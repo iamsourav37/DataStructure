@@ -14,18 +14,23 @@ interface DeleteMethods{
     void remove(int data);
 }
 
-public class SingleLinkedList implements InsertMethods {
+public class SingleLinkedList implements InsertMethods, DeleteMethods {
     private Node head;
 
     SingleLinkedList(){ // default constructor
         this.head = null;
     }
-
+    @Override
     public void insertFirst(int data){
         this.head = new Node(data, this.head);
     }
-
+    @Override
     public void insertLast(int data){
+
+        if(this.head == null){
+            this.insertFirst(data);
+            return;
+        }
         Node tmp = this.head;
 
         while (tmp.getNext() != null)
@@ -34,6 +39,7 @@ public class SingleLinkedList implements InsertMethods {
         Node newNode = new Node(data, null);
         tmp.setNext(newNode);
     }
+    @Override
     public void insertAt(int index, int data){
         if(index<0 || index>this.getLength()){
             System.out.println("Out of range index");
@@ -63,7 +69,7 @@ public class SingleLinkedList implements InsertMethods {
             tmp_forward = tmp_forward.getNext();
         }
     }
-
+    @Override
     public void insertAfter(int key, int data){
 
         // first find out the index of the key
@@ -82,6 +88,7 @@ public class SingleLinkedList implements InsertMethods {
         System.out.println(key+" is not found in the list");
     }
 
+    @Override
     public void insertBefore(int key, int data){
 
         // first find out the index of the key
@@ -100,6 +107,81 @@ public class SingleLinkedList implements InsertMethods {
         System.out.println(key+" is not found in the list");
     }
 
+    @Override
+    public void removeFirst() {
+        if(this.head == null){
+            System.out.println("List is empty");
+            return;
+        }
+        this.head = this.head.getNext();
+    }
+
+    @Override
+    public void removeLast() {
+        if(this.head == null){
+            System.out.println("List is empty");
+            return;
+        }else if(this.head.getNext() == null){
+            this.head = null;
+            return;
+        }
+
+
+        Node second_last = this.head;
+        while(second_last.getNext().getNext() != null)
+            second_last = second_last.getNext();
+        second_last.setNext(null);
+    }
+
+    @Override
+    public void removeAt(int index) {
+        if(index<0 || index>this.getLength()-1){
+            System.out.println("Out of range index");
+            return;
+        }
+        if(this.head == null){
+            System.out.println("List is empty");
+        }
+        else if(index == 0){
+            this.removeFirst();
+        }else if(index == this.getLength()-1){
+            this.removeLast();
+        }else{
+            int count = 0;
+            Node tmp_forward , tmp_before;
+            tmp_before = tmp_forward = this.head;
+
+            while(tmp_forward != null){
+                if (count == index){
+                    // delete the node
+                    tmp_before.setNext(tmp_forward.getNext());
+                    return;
+                }
+                count++;
+                tmp_before = tmp_forward;
+                tmp_forward = tmp_forward.getNext();
+            }
+
+        }
+    }
+    @Override
+    public void remove(int data){
+        if(this.head == null){
+            System.out.println("List is empty");
+        }else{
+            Node tmp = this.head;
+            int index = 0;
+            while (tmp != null){
+                if(data == tmp.getData()){
+                    this.removeAt(index);
+                    return;
+                }
+                index ++;
+                tmp = tmp.getNext();
+            }
+            System.out.println(data+" is not found in the list");
+        }
+    }
 
     public int getLength(){
         Node node = this.head;
@@ -117,7 +199,6 @@ public class SingleLinkedList implements InsertMethods {
         }
 
         Node tmp = this.head;
-        System.out.println("List items are : ");
         String listData = "";
         while (tmp != null){
             listData = listData.concat(String.valueOf(tmp.getData()) + "-->");

@@ -3,7 +3,7 @@ package single_linked_list;
 interface InsertMethods{
     void insertFirst(int data);
     void insertLast(int data);
-    void insertAt(int index, int data) throws Exception;
+    void insertAt(int index, int data);
     void insertAfter(int key, int data);
     void insertBefore(int key, int data);
 }
@@ -34,9 +34,10 @@ abstract public class SingleLinkedList implements InsertMethods,DeleteMethods {
         Node newNode = new Node(data, null);
         tmp.setNext(newNode);
     }
-    public void insertAt(int index, int data) throws Exception {
+    public void insertAt(int index, int data){
         if(index<0 || index>this.getLength()){
-            throw new Exception("Out of range index");
+            System.out.println("Out of range index");
+            return;
         }
         else if(index == 0){
             this.insertFirst(data);
@@ -61,6 +62,42 @@ abstract public class SingleLinkedList implements InsertMethods,DeleteMethods {
             tmp_before = tmp_forward;
             tmp_forward = tmp_forward.getNext();
         }
+    }
+
+    public void insertAfter(int key, int data){
+
+        // first find out the index of the key
+        // if found then call insertAt method with index
+        // if not found then show key not found message
+        int index = 0;
+        Node tmp = this.head;
+        while(tmp != null){
+            if(tmp.getData() == key){
+                this.insertAt(index, data);
+                return;
+            }
+            index++;
+            tmp = tmp.getNext();
+        }
+        System.out.println(key+" is not found in the list");
+    }
+
+    public void insertBefore(int key, int data){
+
+        // first find out the index of the key
+        // if found then call insertAt method with index-1
+        // if not found then show key not found message
+        int index = 0;
+        Node tmp = this.head;
+        while(tmp != null){
+            if(tmp.getData() == key){
+                this.insertAt(index-1, data);
+                return;
+            }
+            index++;
+            tmp = tmp.getNext();
+        }
+        System.out.println(key+" is not found in the list");
     }
 
 

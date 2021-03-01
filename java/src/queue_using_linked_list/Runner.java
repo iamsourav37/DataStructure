@@ -15,8 +15,8 @@ public class Runner {
 
         System.out.println("Size of the queue : "+ q.getSize());
 
-        q.dequeue();
-        q.dequeue();
+        System.out.println("Delete element : "+q.dequeue());
+        System.out.println("Delete element : "+q.dequeue());
 
         System.out.println("After deleting 2 elements size of the queue : "+ q.getSize());
         q.dequeue();

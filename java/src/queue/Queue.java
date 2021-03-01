@@ -52,5 +52,8 @@ public class Queue {
         }
         System.out.println();
     }
+    public int getSize(){
+        return this.front - this.rear +1;
+    }
 
 }

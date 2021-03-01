@@ -14,10 +14,10 @@ public class Queue {
     }
 
     private boolean isFull(){
-        return this.front == this.capacity-1;
+        return this.rear == this.capacity-1;
     }
     private boolean isEmpty(){
-        return this.rear == -1;
+        return this.front == -1;
     }
 
     public void enqueue(int data){
@@ -28,17 +28,17 @@ public class Queue {
         if(rear == -1){
            rear = front = 0;
         }else{
-            front++;
+            rear++;
         }
-        this.queue[front] = data;
+        this.queue[rear] = data;
     }
     public int dequeue(){
         if(isEmpty()){
             System.out.println("Queue is empty");
             return -1;
         }
-        int delete_data = this.queue[rear];
-        rear++;
+        int delete_data = this.queue[front];
+        front++;
         return delete_data;
     }
 
@@ -47,13 +47,13 @@ public class Queue {
             System.out.println("Queue is empty");
             return;
         }
-        for(int i=rear; i<=front; i++){
+        for(int i=front; i<=rear; i++){
             System.out.print(this.queue[i]+" ");
         }
         System.out.println();
     }
     public int getSize(){
-        return this.front - this.rear +1;
+        return this.rear - this.front +1;
     }
 
 }

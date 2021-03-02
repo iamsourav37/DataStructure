@@ -8,30 +8,20 @@ public class BinaryTree {
     }
 
     public void insert(int data){
-        TreeNode node = new TreeNode(data);
+        this.root = this.insert(data, root);
+    }
 
-        if(root == null){
-            root = node;
-        }else{
-            TreeNode current = root, parent;
-
-            while(true){
-                parent = current;
-                if(data<current.getData()){
-                    current = current.getLeft();
-                    if(current == null){
-                        parent = node;
-                        return;
-                    }
-                }else{
-                    current = current.getRight();
-                    if(current == null){
-                        parent = node;
-                        return;
-                    }
-                }
+    private TreeNode insert(int data, TreeNode node){ // using recursion
+        if(node == null)
+            node = new TreeNode(data);
+        else{
+            if(data<=node.getData()){
+                node.setLeft(insert(data, node.getLeft()));
+            }else{
+                node.setRight(insert(data, node.getRight()));
             }
         }
+        return node;
     }
 
 }

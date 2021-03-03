@@ -72,6 +72,8 @@ public class BinaryTree {
     }
     public void preorder(){
         preorder(root);
+        System.out.println();
+
     }
     private void preorder(TreeNode node){
         if(node != null){
@@ -82,6 +84,7 @@ public class BinaryTree {
     }
     public void postorder(){
         postorder(root);
+        System.out.println();
     }
     private void postorder(TreeNode node){
         if(node != null){
@@ -93,6 +96,8 @@ public class BinaryTree {
     }
     public void inorder(){
         inorder(root);
+        System.out.println();
+
     }
     private void inorder(TreeNode node){
         if(node != null){

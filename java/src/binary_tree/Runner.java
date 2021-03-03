@@ -10,9 +10,9 @@ public class Runner {
         t.insert(74);
 
 //        12
-//             72
+//      6       72
 //           24   74
-//      6
+
         System.out.println("Leaf node : "+t.countLeaf());
         System.out.println("No of node : "+t.countNodes());
 
@@ -28,13 +28,14 @@ public class Runner {
 
         if(!t.search(10))
             t.insert(10);
+        t.insert(7);
 
-//   after inserting 10
+//   after inserting 10 and 7
 //         12
-//             72
-//           24   74
-//      6
-//         10
+//     6       72
+//       10   24   74
+//     7
+
 
         System.out.println("Leaf node : "+t.countLeaf());
         System.out.println("No of node : "+t.countNodes());
@@ -45,6 +46,10 @@ public class Runner {
         t.postorder();
         System.out.println("Inorder : ");
         t.inorder();
+        System.out.println("Level order travarsal : ");
+        t.levelorder();
+
+
 
     }
 }

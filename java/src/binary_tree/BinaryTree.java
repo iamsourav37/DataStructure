@@ -1,4 +1,6 @@
 package binary_tree;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BinaryTree {
     TreeNode root;
@@ -104,6 +106,26 @@ public class BinaryTree {
             inorder(node.getLeft());
             System.out.print(node.getData()+" ");
             inorder(node.getRight());
+        }
+    }
+
+    public void levelorder(){
+        this.levelorder(this.root);
+    }
+    private void levelorder(TreeNode node){
+        if(node == null)
+            return;
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode temp ;
+
+        queue.add(node);
+        while(!queue.isEmpty()){
+            temp = queue.poll();
+            System.out.print(temp.getData()+" ");
+            if(temp.getLeft() != null)
+                queue.add(temp.getLeft());
+            if(temp.getRight() != null)
+                queue.add(temp.getRight());
         }
     }
 

@@ -80,5 +80,26 @@ public class BinaryTree {
             preorder(node.getRight());
         }
     }
+    public void postorder(){
+        postorder(root);
+    }
+    private void postorder(TreeNode node){
+        if(node != null){
+            postorder(node.getLeft());
+            postorder(node.getRight());
+            System.out.print(node.getData()+" ");
+        }
+
+    }
+    public void inorder(){
+        inorder(root);
+    }
+    private void inorder(TreeNode node){
+        if(node != null){
+            inorder(node.getLeft());
+            System.out.print(node.getData()+" ");
+            inorder(node.getRight());
+        }
+    }
 
 }

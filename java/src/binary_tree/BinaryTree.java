@@ -70,5 +70,15 @@ public class BinaryTree {
 
         return rightFlag;
     }
+    public void preorder(){
+        preorder(root);
+    }
+    private void preorder(TreeNode node){
+        if(node != null){
+            System.out.print(node.getData()+" ");
+            preorder(node.getLeft());
+            preorder(node.getRight());
+        }
+    }
 
 }

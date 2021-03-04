@@ -111,6 +111,7 @@ public class BinaryTree {
 
     public void levelorder(){
         this.levelorder(this.root);
+        System.out.println();
     }
     private void levelorder(TreeNode node){
         if(node == null)
